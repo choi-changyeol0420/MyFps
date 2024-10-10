@@ -44,9 +44,16 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 #endif
+		//by choiCY 24-10-10
+        private void OnDisable()
+        {
+            move = Vector2.zero;
+			look = Vector2.zero;
+			jump = false;
+			sprint = false;
+        }
 
-
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 

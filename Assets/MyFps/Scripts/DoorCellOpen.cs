@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 namespace Myfps
 {
@@ -28,25 +27,27 @@ namespace Myfps
         {
             theDistance = PlayerCasting.distanceFromTarget;
         }
-
         //마우스를 가져가면 액션 UI를 보여준다
         private void OnMouseOver()
         {
-            if (theDistance <= 2)
+            if (theDistance <= 2)   //Player와문 사이에 거리
             {
                 ActionUI();
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E))    //여는 키
                 {
                     //Debug.Log("Open the Door");
                     Door.SetBool("IsOpen", true);
                     Audio.Play();
-                    actionText.text = "Close the Door";
+                    //닫을 때에 텍스트
                     keyText.text = "[R]";
+                    actionText.text = "Close the Door";
                 }
-                else if (Input.GetKey(KeyCode.R))
+                else if (Input.GetKey(KeyCode.R))   //닫는 키
                 {
                     //close the Door
                     Door.SetBool("IsOpen", false);
+                    Audio.Play();
+                    //열 때에 텍스트
                     keyText.text = "[E]";
                     actionText.text = "Open the Door";
 
@@ -61,7 +62,6 @@ namespace Myfps
         {
             actinUI.SetActive(true);
             extraCross.SetActive(true);
-            actionText.text = "Open the Door";
         }
         //마우스가 벗어나면 액션 UI를 감춘다
         private void OnMouseExit()
@@ -71,7 +71,6 @@ namespace Myfps
         void HideActionUI()
         {
             actinUI.SetActive(false);
-            actionText.text = "";
             extraCross.SetActive(false);
         }
     }
