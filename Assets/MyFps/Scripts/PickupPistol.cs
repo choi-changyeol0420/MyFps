@@ -11,8 +11,9 @@ namespace Myfps
         #endregion
         protected override void DoAction()
         {
-            
-            if (Input.GetKey(KeyCode.E))
+            keyText.text = "[E]";
+            actionText.text = "Pick Up Pistol";
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 realPistol.SetActive(true);
                 Arrow.SetActive(false);
