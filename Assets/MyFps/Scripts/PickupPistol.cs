@@ -8,6 +8,7 @@ namespace Myfps
         #region Variables
         public GameObject realPistol;
         public GameObject Arrow;
+        public GameObject enemyTrigger;
         #endregion
         protected override void DoAction()
         {
@@ -17,6 +18,7 @@ namespace Myfps
             {
                 realPistol.SetActive(true);
                 Arrow.SetActive(false);
+                enemyTrigger.SetActive(true);
                 Destroy(gameObject);
                 HideActionUI();
             }
