@@ -32,6 +32,12 @@ namespace Myfps
 
             //Enemy 등장 사운드
             jumpsource.Play();
+            EnemyController enemy = theEnemy.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.SetState(EnemyState.E_Walk);
+            }
+            Destroy(this.gameObject);
         }
     }
 }

@@ -17,16 +17,15 @@ namespace Myfps
         //연사 딜레이
         private float fireDelay = 0.5f;
         private bool isFire =false;
-        public EnemyController enemyController;
 
         //pistol 공격력
-        private float damage = 5;
+        [SerializeField]private float pistoldamage = 5;
         #endregion
         // Start is called before the first frame update
         void Start()
         {
             //참조
-            animator = GetComponent<Animator>();
+            animator = this.GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -40,13 +39,18 @@ namespace Myfps
         IEnumerator Shoot()
         {
             isFire = true;
+            //내 앞에 100안에 적이 있으면 적에게 데미지를 준다
             float maxDistance = 100f;
             RaycastHit hit;
             if(Physics.Raycast(firePoint.position, firePoint.TransformDirection(Vector3.forward), out hit, maxDistance))
             {
-                Debug.Log("Shoot");
-                enemyController.TakeDamage(damage);
-
+                //적에게 데미지를 준다
+                Debug.Log($"{hit.transform.name}에게 데미지를 준다");
+                EnemyController enemy = hit.transform.GetComponent<EnemyController>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(pistoldamage);
+                }
             }
             //슛 효과 - VFS, SFX
             muzzle.gameObject.SetActive(true);

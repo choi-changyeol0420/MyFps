@@ -10,6 +10,7 @@ namespace Myfps
         #region Variables
         public static float distanceFromTarget;
         private float totarget;
+        //private float playerhealth = 20;
         #endregion
         // Update is called once per frame
         void Update()

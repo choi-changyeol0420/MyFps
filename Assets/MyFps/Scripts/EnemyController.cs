@@ -17,49 +17,103 @@ namespace Myfps
     public class EnemyController : MonoBehaviour
     {
         #region Variables
-        public Animator animator;
+        public GameObject theplayer;
+        private Animator animator;
 
         //로봇 현재 상태
         private EnemyState enemyState;
 
         private EnemyState beforeState;
 
-        //private float movespeed = 0.5f;
+        [SerializeField]private float movespeed = 5f;
+        [SerializeField]private float enemyAttack = 5f;
+        [SerializeField] private float AttackRange = 1.5f;
+        [SerializeField] private float AttackDelay = 2f;
+        private float countdown;
         //체력
-        private float health;
-        private float starthealth = 20;
+        [SerializeField]private float maxhealth = 20;
+        private float currenthealth;
+
+        private bool isDeath;
         #endregion
         private void Start()
-        {
+        {   
             //초기화
-            starthealth = health;
+            currenthealth = maxhealth;
+            SetState(EnemyState.E_Idle);
+            isDeath = false;
+            countdown = AttackDelay;
             //참조
             animator = GetComponent<Animator>();
-            SetState(EnemyState.E_Idle);
         }
-        void EnemyWalk()
+        private void Update()
         {
-            SetState(EnemyState.E_Walk);
-        }
-        void AttackPlayer()
-        {
-            SetState(EnemyState.E_Attack);
+            if (isDeath) return;
+            Vector3 dir = theplayer.transform.position - transform.position;
+            float distance = Vector3.Distance(theplayer.transform.position, transform.position);
+            if (distance <= AttackRange)
+            {
+                SetState(EnemyState.E_Attack);
+
+            }
+            else if (distance > AttackRange)
+            {
+                SetState(EnemyState.E_Walk);
+            }
+            //로봇 상태 구현
+            switch (enemyState)
+            {
+                case EnemyState.E_Idle:
+                    break;
+                case EnemyState.E_Walk:     //플레이어를 향해 걷는다(이동)
+                    transform.Translate(dir.normalized * movespeed * Time.deltaTime, Space.World);
+                    transform.LookAt(theplayer.transform);
+                    break;
+                case EnemyState.E_Attack:
+                    break;
+                /*case EnemyState.E_Death:
+                    break;*/
+            }
         }
         void Die()
         {
+            isDeath = true;
+            Debug.Log("Enemy Death");
             SetState(EnemyState.E_Death);
-            Destroy(gameObject,5f);
+            transform.GetComponent<BoxCollider>().enabled = false;
+            Destroy(gameObject,10f);
+            //gameObject.SetActive(false);
         }
         public void TakeDamage(float damage)
         {
-            health -= damage;
-            if (health <= 0)
+            currenthealth -= damage;
+            Debug.Log($"Remain Health: {currenthealth}");
+            if (currenthealth <= 0 && !isDeath)
             {
                 Die();
             }
         }
+        /*void AttackOnTimer()
+        {
+            if(countdown < 0f)
+            {
+                //공격
+                Attack();
+                //타이머 초기화
+                countdown = AttackDelay;
+            }
+            countdown -= Time.deltaTime;
+        }*/
+        void Attack()
+        {
+            PlayerController controller = theplayer.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.TakeDamage(enemyAttack);
+            }
+        }
         //로봇Enemy 상태 변경
-        private void SetState(EnemyState Enemystate)
+        public void SetState(EnemyState Enemystate)
         {
             //현재 상태 체크
             if (enemyState == Enemystate)
@@ -72,5 +126,4 @@ namespace Myfps
             animator.SetInteger("EnemyState", (int)Enemystate);
         }
     }
-    
 }
