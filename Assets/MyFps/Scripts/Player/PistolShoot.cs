@@ -20,6 +20,9 @@ namespace Myfps
 
         //pistol 공격력
         [SerializeField]private float pistoldamage = 5;
+
+        //임펙트 효과
+        public GameObject ImpactPrefab;
         #endregion
         // Start is called before the first frame update
         void Start()
@@ -33,7 +36,10 @@ namespace Myfps
         {
             if(Input.GetButtonDown("Fire") && !isFire)
             {
-                StartCoroutine(Shoot());
+                if(PlayerState.Instance.UseAmmo(1) == true)
+                {
+                    StartCoroutine(Shoot());
+                }
             }
         }
         IEnumerator Shoot()
@@ -44,12 +50,16 @@ namespace Myfps
             RaycastHit hit;
             if(Physics.Raycast(firePoint.position, firePoint.TransformDirection(Vector3.forward), out hit, maxDistance))
             {
+
+                //임펙트 효과
+                GameObject effectGo = Instantiate(ImpactPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(effectGo, 2f);
                 //적에게 데미지를 준다
                 Debug.Log($"{hit.transform.name}에게 데미지를 준다");
-                EnemyController enemy = hit.transform.GetComponent<EnemyController>();
-                if (enemy != null)
+                IDamageable damageable = hit.transform.GetComponent<IDamageable>();
+                if(damageable != null)
                 {
-                    enemy.TakeDamage(pistoldamage);
+                    damageable.TakeDamage(pistoldamage);
                 }
             }
             //슛 효과 - VFS, SFX
