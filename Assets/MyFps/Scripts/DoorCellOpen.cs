@@ -21,7 +21,8 @@ namespace Myfps
         //마우스를 가져가면 액션 UI를 보여준다
         protected override void DoAction()
         {
-            if (Input.GetKey(KeyCode.E))    //여는 키
+            m_collider.enabled = true;
+            if (Input.GetKeyDown(KeyCode.E))    //여는 키
             {
                 //Debug.Log("Open the Door");
                 Door.SetBool("IsOpen", true);
@@ -29,8 +30,9 @@ namespace Myfps
                 //닫을 때에 텍스트
                 keyText.text = "[R]";
                 actionText.text = "Close the Door";
+                m_collider.enabled = false;
             }
-            else if (Input.GetKey(KeyCode.R))   //닫는 키
+            else if (Input.GetKeyDown(KeyCode.R))   //닫는 키
             {
                 //close the Door
                 Door.SetBool("IsOpen", false);
@@ -38,7 +40,7 @@ namespace Myfps
                 //열 때에 텍스트
                 keyText.text = "[E]";
                 actionText.text = "Open the Door";
-
+                m_collider.enabled = true;
             }
         }
     }

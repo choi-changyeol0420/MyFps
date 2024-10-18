@@ -8,10 +8,12 @@ namespace Myfps
     public class CEnemytrigger : MonoBehaviour
     {
         #region Variables
-        public GameObject theDoor;
-        public AudioSource doorBang;
-        public AudioSource jumpsource;
-        public GameObject theEnemy;
+        public GameObject theDoor;      //문
+        public AudioSource doorBang;    //문 열기 사운드
+        public AudioSource bgm01;  //메인씬 1 배경음
+        public AudioSource bgm02;  //적 등장 배경음
+        
+        public GameObject theEnemy;     //적
         #endregion
         private void OnTriggerEnter(Collider other)
         {
@@ -24,6 +26,7 @@ namespace Myfps
             theDoor.GetComponent<Animator>().SetBool("IsOpen", true);
             theDoor.GetComponent<BoxCollider>().enabled = false;
             //문 사운드
+            bgm01.Stop();
             doorBang.Play();
             //Enemy 활성화
             theEnemy.SetActive(true);
@@ -31,7 +34,7 @@ namespace Myfps
             yield return new WaitForSeconds(1f);
 
             //Enemy 등장 사운드
-            jumpsource.Play();
+            bgm02.Play();
             EnemyController enemy = theEnemy.GetComponent<EnemyController>();
             if (enemy != null)
             {

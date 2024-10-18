@@ -33,8 +33,10 @@ namespace Myfps
         //체력
         [SerializeField]private float maxhealth = 20;
         private float currenthealth;
-
         private bool isDeath;
+
+        public AudioSource bgm01;  //메인씬 1 배경음
+        public AudioSource bgm02;  //적 등장 배경음
         #endregion
         private void Start()
         {   
@@ -81,6 +83,8 @@ namespace Myfps
             Debug.Log("Enemy Death");
             SetState(EnemyState.E_Death);
             transform.GetComponent<BoxCollider>().enabled = false;
+            bgm02.Stop();
+            bgm01.Play();
             Destroy(gameObject,10f);
             //gameObject.SetActive(false);
         }

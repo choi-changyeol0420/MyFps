@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using StarterAssets;
 
 namespace Myfps
 {
@@ -13,6 +13,7 @@ namespace Myfps
         public TextMeshProUGUI sceneText;
         private string lineText = "Looks like a weapon on that table.";
         public GameObject Arrow;
+        public AudioSource line03;
         #endregion
         private void OnTriggerEnter(Collider other)
         {
@@ -22,9 +23,11 @@ namespace Myfps
         IEnumerator FirstTrigger()
         {
             //플레이 캐릭터 비활성화  (플레이 멈춤)
-            thePlayer.SetActive(false);
+            thePlayer.GetComponent<FirstPersonController>().enabled = false;
 
             //대사 출력 :  "Looks like a weapon on that table."
+            line03.Play();
+            sceneText.gameObject.SetActive(true);
             sceneText.text = lineText;
 
             //1초 딜레이
@@ -41,8 +44,8 @@ namespace Myfps
             sceneText.gameObject.SetActive(false);
 
             //플레이 캐릭터 활성화 (다시 플레이)
-            thePlayer.SetActive(true);
-            transform.GetComponent<BoxCollider>().enabled = false;
+            thePlayer.GetComponent<FirstPersonController>().enabled = true;
+            Destroy(gameObject);
         }
     }
 }

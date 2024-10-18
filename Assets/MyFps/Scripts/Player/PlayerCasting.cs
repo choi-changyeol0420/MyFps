@@ -8,8 +8,8 @@ namespace Myfps
     public class PlayerCasting : MonoBehaviour
     {
         #region Variables
-        public static float distanceFromTarget;
-        private float totarget;
+        public static float distanceFromTarget = Mathf.Infinity;
+        [SerializeField]private float totarget;
         //private float playerhealth = 20;
         #endregion
         // Update is called once per frame
