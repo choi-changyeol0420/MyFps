@@ -36,6 +36,7 @@ namespace Myfps
             isDie = true;
             Destroy(gameObject);
             GameObject Barrel_B = Instantiate(Barrel, transform.position, Quaternion.identity);
+            AudioManager.Instance.Play("PotterySmash");
         }
     }
 }
