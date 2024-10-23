@@ -57,3 +57,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     Source: {fileID: 0}
+  - name: PlayBGM
+    clip: {fileID: 8300000, guid: f0ec72de7b044f4459800fd42665b235, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    Source: {fileID: 0}

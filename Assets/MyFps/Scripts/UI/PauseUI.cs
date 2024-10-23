@@ -9,7 +9,7 @@ namespace Myfps
     {
         private GameObject theplayer;
         public GameObject pauseUI;
-        //public SceneFader fader;
+        public SceneFader fader;
         [SerializeField] private string lodetoname = "GotoMenu";
         private void Start()
         {
@@ -31,20 +31,25 @@ namespace Myfps
                 Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                theplayer.SetActive(false);     
+                theplayer.GetComponent<FirstPersonController>().MoveSpeed = 0f;
+                theplayer.GetComponent<FirstPersonController>().RotationSpeed = 0f;
             }
             else
             {
                 Time.timeScale = 1f;
+                theplayer.GetComponent<FirstPersonController>().MoveSpeed = 4f;
+                theplayer.GetComponent<FirstPersonController>().RotationSpeed = 1f;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                theplayer.SetActive(true); 
             }
         }
         public void MainMenu()
         {
             Time.timeScale = 1f;
-            Debug.Log(lodetoname);
+            //씬 종료 처리
+            AudioManager.Instance.StopBgm();
+
+            fader.FadeTo(lodetoname);
         }
     }
 }

@@ -8371,36 +8371,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6417559474627071800, guid: 1b7bdbae48520ea40bff77fc63a1762e,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417559474627071800, guid: 1b7bdbae48520ea40bff77fc63a1762e,
-        type: 3}
-      propertyPath: sounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f0ec72de7b044f4459800fd42665b235, type: 3}
-    - target: {fileID: 6417559474627071800, guid: 1b7bdbae48520ea40bff77fc63a1762e,
-        type: 3}
-      propertyPath: sounds.Array.data[2].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417559474627071800, guid: 1b7bdbae48520ea40bff77fc63a1762e,
-        type: 3}
-      propertyPath: sounds.Array.data[2].name
-      value: PlayBGM
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417559474627071800, guid: 1b7bdbae48520ea40bff77fc63a1762e,
-        type: 3}
-      propertyPath: sounds.Array.data[2].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6417559474627071800, guid: 1b7bdbae48520ea40bff77fc63a1762e,
-        type: 3}
-      propertyPath: sounds.Array.data[2].volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7194953759450339198, guid: 1b7bdbae48520ea40bff77fc63a1762e,
         type: 3}
       propertyPath: m_LocalPosition.x

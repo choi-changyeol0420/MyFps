@@ -83,7 +83,7 @@ namespace Myfps
                 return;
             }
             //배경음 정지
-            Stop(bgmSound);
+            StopBgm();
 
             Sound sound = null;
             //매개변수로 이름과 같은 클립 찾기
@@ -102,6 +102,10 @@ namespace Myfps
                 return;
             }
             sound.Source.Play();
+        }
+        public void StopBgm()
+        {
+            Stop(bgmSound);
         }
     }
 }
