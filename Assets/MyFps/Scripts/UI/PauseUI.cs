@@ -21,6 +21,11 @@ namespace Myfps
             {
                 Continue();
             }
+            else if(Input.GetKeyDown(KeyCode.Return))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
         public void Continue()
         {
@@ -37,10 +42,10 @@ namespace Myfps
             else
             {
                 Time.timeScale = 1f;
-                theplayer.GetComponent<FirstPersonController>().MoveSpeed = 4f;
-                theplayer.GetComponent<FirstPersonController>().RotationSpeed = 1f;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                theplayer.GetComponent<FirstPersonController>().MoveSpeed = 4f;
+                theplayer.GetComponent<FirstPersonController>().RotationSpeed = 1f;
             }
         }
         public void MainMenu()
@@ -48,7 +53,6 @@ namespace Myfps
             Time.timeScale = 1f;
             //씬 종료 처리
             AudioManager.Instance.StopBgm();
-
             fader.FadeTo(lodetoname);
         }
     }

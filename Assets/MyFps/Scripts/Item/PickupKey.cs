@@ -1,13 +1,21 @@
+using UnityEngine;
+
 namespace Myfps
 {
-    public class PickupKey : PickupItem
+    public class PickupKey : Interactive
     {
-        public bool isKey = false;
-        protected override bool OnPickup()
+        protected override void DoAction()
         {
-            isKey = true;
-            return true;
+            keyText.text = "[E]";
+            actionText.text = "Pick up Key";
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                PlayerState.Instance.AcquirePuzzleItem(PuzzleKey.ROOM01_KEY);
+                Destroy(gameObject);
+                keyText.text = "";
+                actionText.text = "";
+                extraCross.SetActive(false);
+            }
         }
-
     }
 }

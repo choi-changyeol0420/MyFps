@@ -60,6 +60,7 @@ namespace Myfps
                 if(damageable != null)
                 {
                     damageable.TakeDamage(pistoldamage);
+
                 }
             }
             //슛 효과 - VFS, SFX
