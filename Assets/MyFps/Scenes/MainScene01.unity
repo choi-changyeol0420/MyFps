@@ -23166,6 +23166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actinUI: {fileID: 2046080026}
   actionText: {fileID: 922231699}
+  action: Open the Door
   keyText: {fileID: 1631191096}
   extraCross: {fileID: 1721983535}
   Audio: {fileID: 738826488}
@@ -58939,6 +58940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actinUI: {fileID: 2046080026}
   actionText: {fileID: 922231699}
+  action: Pick up Pistol
   keyText: {fileID: 1631191096}
   extraCross: {fileID: 1721983535}
   realPistol: {fileID: 1172093613}
@@ -61193,6 +61195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actinUI: {fileID: 2046080026}
   actionText: {fileID: 922231699}
+  action: Open the Door
   keyText: {fileID: 1631191096}
   extraCross: {fileID: 1721983535}
   Audio: {fileID: 1400339725}
@@ -77132,6 +77135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AmmoBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 467826269827799024, guid: e6200731b634a474abd93ae1b53b6889,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7856052235951450485, guid: e6200731b634a474abd93ae1b53b6889,
         type: 3}

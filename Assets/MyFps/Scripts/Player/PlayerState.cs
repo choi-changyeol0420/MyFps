@@ -7,6 +7,7 @@ namespace Myfps
     public enum PuzzleKey
     {
         ROOM01_KEY,
+        LEFTEYE_KEY,
         MAX_KEY
     }
     //플레이어의 속성값을 관리하는 (싱글톤, DontDestory )클래스.. ammo
