@@ -9,7 +9,6 @@ namespace Myfps
 
         protected override void DoAction()
         {
-            actionText.text = action;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("탄환 7개를 지급 했습니다");

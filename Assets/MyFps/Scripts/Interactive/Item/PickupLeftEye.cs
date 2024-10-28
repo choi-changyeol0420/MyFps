@@ -21,7 +21,6 @@ namespace Myfps
         #endregion
         protected override void DoAction()
         {
-            actionText.text = action;
             keyText.gameObject.SetActive(true);
             actionText.gameObject.SetActive(true);
             if(Input.GetKeyDown(KeyCode.E))

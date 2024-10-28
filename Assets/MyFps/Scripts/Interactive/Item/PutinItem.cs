@@ -1,36 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Myfps
 {
     public class PutinItem : Interactive
     {
-        public Material material;
-        private Color color = Color.gray;
-        public GameObject fulleye;
+        public GameObject fakefulleye;
+        public GameObject realfulleye;
+        public GameObject fakewall;
+        public GameObject exitwall;
+        private Animator animator;
         private PlayerState player;
         private void Start()
         {
-            fulleye.GetComponent<Renderer>().material.color = color;
+            animator = exitwall.GetComponent<Animator>();
             player = PlayerState.Instance;
+        }
+        private void Update()
+        {
+            if(player.HasPuzzleItem(PuzzleKey.LEFTEYE_KEY)
+                    && player.HasPuzzleItem(PuzzleKey.RIGHTEYE_KEY))
+            {
+                fakewall.GetComponent<Renderer>().enabled = false;
+                exitwall.SetActive(true);
+            }
         }
         protected override void DoAction()
         {
-            actionText.text = action;
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if(player.HasPuzzleItem(PuzzleKey.RIGHTEYE_KEY) && player.HasPuzzleItem(PuzzleKey.LEFTEYE_KEY))
+                if (player.HasPuzzleItem(PuzzleKey.LEFTEYE_KEY)
+                    && player.HasPuzzleItem(PuzzleKey.RIGHTEYE_KEY))
                 {
-                    PlayerState.Instance.AcquirePuzzleItem(PuzzleKey.FULLEYE_KEY);
-                    fulleye.GetComponent <Renderer>().material = material;
+                    fakefulleye.SetActive(false);
+                    realfulleye.SetActive(true);
+                    animator.SetBool("IsOpen", true);
+                    fakewall.GetComponent<BoxCollider>().isTrigger = true;
                 }
-                else
-                {
-                    return;
-                }
-                actionText.gameObject.SetActive(false);
-                keyText.gameObject.SetActive(false);
             }
         }
     }

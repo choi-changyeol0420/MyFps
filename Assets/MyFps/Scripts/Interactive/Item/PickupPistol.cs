@@ -15,7 +15,6 @@ namespace Myfps
         protected override void DoAction()
         {
             keyText.text = "[E]";
-            actionText.text = action;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 realPistol.SetActive(true);

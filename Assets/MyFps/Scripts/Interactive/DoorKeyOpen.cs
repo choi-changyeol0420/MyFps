@@ -20,7 +20,6 @@ namespace Myfps
         }
         protected override void DoAction()
         {
-            actionText.text = action;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!State.HasPuzzleItem(PuzzleKey.ROOM01_KEY))

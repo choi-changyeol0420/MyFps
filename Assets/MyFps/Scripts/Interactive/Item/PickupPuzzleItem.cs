@@ -21,7 +21,6 @@ namespace Myfps
 
         protected override void DoAction()
         {
-            actionText.text = action;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(PuzzleItem());
