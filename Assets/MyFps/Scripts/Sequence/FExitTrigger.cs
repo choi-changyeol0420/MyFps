@@ -8,6 +8,7 @@ namespace Myfps
     {
         public SceneFader fader;
         private string loadtoscene = "MainMenu";
+        
         private void OnTriggerEnter(Collider other)
         {
             AudioManager.Instance.StopBgm();

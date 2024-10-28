@@ -26,9 +26,9 @@ namespace Myfps
         }
         private void OnMouseOver()
         {
+            actionText.text = action;
             if (theDistance <= 2)   //Player와 충돌체 사이의 거리
             {
-                actionText.text = action;
                 ActionUI();
                 DoAction();
             }

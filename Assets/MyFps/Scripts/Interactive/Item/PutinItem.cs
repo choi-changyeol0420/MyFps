@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using System.Collections;
 
 namespace Myfps
 {
@@ -8,35 +10,52 @@ namespace Myfps
         public GameObject realfulleye;
         public GameObject fakewall;
         public GameObject exitwall;
-        private Animator animator;
+        public GameObject exitTrigger;
         private PlayerState player;
+        private Animator animator;
+        public TextMeshProUGUI textBox;
+
         private void Start()
         {
-            animator = exitwall.GetComponent<Animator>();
             player = PlayerState.Instance;
+            animator = exitwall.GetComponent<Animator>();
+            exitTrigger.GetComponent<BoxCollider>().isTrigger = false;
         }
-        private void Update()
+        private void FixedUpdate()
         {
             if(player.HasPuzzleItem(PuzzleKey.LEFTEYE_KEY)
                     && player.HasPuzzleItem(PuzzleKey.RIGHTEYE_KEY))
             {
-                fakewall.GetComponent<Renderer>().enabled = false;
+                fakewall.SetActive(false);
                 exitwall.SetActive(true);
             }
         }
         protected override void DoAction()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 if (player.HasPuzzleItem(PuzzleKey.LEFTEYE_KEY)
                     && player.HasPuzzleItem(PuzzleKey.RIGHTEYE_KEY))
                 {
                     fakefulleye.SetActive(false);
                     realfulleye.SetActive(true);
+                    gameObject.GetComponent<BoxCollider>().enabled = false;
                     animator.SetBool("IsOpen", true);
-                    fakewall.GetComponent<BoxCollider>().isTrigger = true;
+                    exitTrigger.GetComponent<BoxCollider>().isTrigger = true;
+                }
+                else
+                {
+                    StartCoroutine(Enumerator());
                 }
             }
+        }
+        IEnumerator Enumerator()
+        {
+            textBox.enabled = true;
+            textBox.text = "You need more Eye Pictures";
+            
+            yield return new WaitForSeconds(1);
+            textBox.enabled = false;
         }
     }
 }

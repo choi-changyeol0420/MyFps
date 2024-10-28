@@ -42,7 +42,7 @@ namespace Myfps
             //소지갯수 체크
             if(AmmoCount < amount)
             {
-                Debug.Log("You need to reload");
+                //Debug.Log("You need to reload");
                 return false;   //사용량보다 부족하다
             }
             AmmoCount -= amount;

@@ -70,7 +70,7 @@ namespace Myfps
             }
             if (sound == null)
             {
-                Debug.Log($"cilp Find: {name}");
+                //Debug.Log($"cilp Find: {name}");
                 return;
             }
             sound.Source.Stop();
