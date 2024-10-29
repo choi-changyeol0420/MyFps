@@ -41,7 +41,7 @@ namespace Myfps
                     realfulleye.SetActive(true);
                     gameObject.GetComponent<BoxCollider>().enabled = false;
                     animator.SetBool("IsOpen", true);
-                    exitTrigger.GetComponent<BoxCollider>().isTrigger = true;
+                    exitTrigger.SetActive(true);
                 }
                 else
                 {

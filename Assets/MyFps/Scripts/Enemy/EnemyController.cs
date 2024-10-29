@@ -22,7 +22,7 @@ namespace Myfps
 
         //로봇 현재 상태
         private EnemyState enemyState;
-
+        //로봇 이전 상태
         private EnemyState beforeState;
 
         [SerializeField]private float movespeed = 5f;
@@ -110,10 +110,10 @@ namespace Myfps
         }*/
         void Attack()
         {
-            PlayerController controller = theplayer.GetComponent<PlayerController>();
-            if (controller != null)
+            IDamageable damageable = theplayer.GetComponent<IDamageable>();
+            if (damageable != null)
             {
-                controller.TakeDamage(enemyAttack);
+                damageable.TakeDamage(enemyAttack);
             }
         }
         //로봇Enemy 상태 변경

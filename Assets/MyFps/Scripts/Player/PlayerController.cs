@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Myfps
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IDamageable
     {
         #region Variables
         private float playerhealth;
