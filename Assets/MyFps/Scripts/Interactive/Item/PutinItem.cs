@@ -19,7 +19,6 @@ namespace Myfps
         {
             player = PlayerState.Instance;
             animator = exitwall.GetComponent<Animator>();
-            exitTrigger.GetComponent<BoxCollider>().isTrigger = false;
         }
         private void FixedUpdate()
         {

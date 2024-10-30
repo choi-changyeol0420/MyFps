@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using static Unity.Burst.Intrinsics.X86;
 
 namespace Myfps
 {
@@ -36,6 +37,18 @@ namespace Myfps
         [SerializeField] private float AttackRange = 1.5f;
         [SerializeField] private float AttackDamage = 5f;
 
+        //적 감지
+        private bool isAiming = false;
+        public bool IsAiming
+        {
+            get { return isAiming; }
+            private set 
+            {
+                isAiming = value; 
+
+            }
+        }
+        [SerializeField] private float Range = 20f;
         //패트롤
         public Transform[] wayPoints;
         private int nowWayPoint = 0;
@@ -67,12 +80,21 @@ namespace Myfps
         private void Update()
         {
             if (isDeath) return;
-            Vector3 dir = theplayer.transform.position - transform.position;
             float distance = Vector3.Distance(theplayer.transform.position, transform.position);
+            if(Range > 0)
+            {
+                IsAiming = distance <= Range;
+            }
             if (distance <= AttackRange)
             {
                 SetState(RobotState.E_Attack);
-
+            }
+            else if (Range > 0)
+            {
+                if(IsAiming)
+                {
+                    SetState(RobotState.E_Chase);
+                }
             }
             switch (currentState)
             {
@@ -102,6 +124,11 @@ namespace Myfps
                     break;
 
                 case RobotState.E_Chase:
+                    if(Range > 0 && !IsAiming)
+                    {
+                        GoStartPosition();
+                        return;
+                    }
                     //플레이어 위치 업데이트
                     agent.SetDestination(theplayer.position);
                     break;
@@ -109,6 +136,7 @@ namespace Myfps
         }
         public void SetState(RobotState robotstate)
         {
+            if(isDeath) return;
             //현재 상태 체크
             if (currentState == robotstate)
                 return;
@@ -142,10 +170,11 @@ namespace Myfps
         }
         void Die()
         {
+            SetState(RobotState.E_Death);
             isDeath = true;
             Debug.Log("Robot Death!!");
-            SetState(RobotState.E_Death);
             transform.GetComponent<BoxCollider>().enabled = false;
+            Destroy(gameObject, 3f);
         }
         void Attack()
         {
@@ -163,6 +192,18 @@ namespace Myfps
                 nowWayPoint = 0;
             }
             agent.SetDestination(wayPoints[nowWayPoint].position);
+        }
+        public void GoStartPosition()
+        {
+            if(isDeath) return;
+            SetState(RobotState.E_Walk);
+            nowWayPoint = 0;
+            agent.SetDestination(startpoistion);
+        }
+        void OnDrawGizmosSelected()
+        { 
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, Range);
         }
     }
 }

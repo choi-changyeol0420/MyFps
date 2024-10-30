@@ -4,30 +4,29 @@ using UnityEngine;
 
 namespace Myfps
 {
-    public class GEnemyZoneTrigger : MonoBehaviour
+    public class HEnemyZoneOutTrigger : MonoBehaviour
     {
         #region Variables
         public Transform gunMan;
-
-        public GameObject enemyZoneOut;     //out Trigger
+        public GameObject enemyZoneIn;
         #endregion
         private void OnTriggerEnter(Collider other)
         {
-            //건맨이 추격시작
+            //건맨 제자리로
             if(other.tag == "Player")
             {
-                if (gunMan != null)
+                if(gunMan != null)
                 {
-                    gunMan.GetComponent<Enemy>().SetState(RobotState.E_Chase);
+                    gunMan.GetComponent<Enemy>().GoStartPosition();
                 }
             }
         }
         private void OnTriggerExit(Collider other)
         {
+            //In Trigger 활성화
             if (other.tag == "Player")
             {
-                //gunMan 제자리로 가라
-                enemyZoneOut.SetActive(true);
+                enemyZoneIn.SetActive(true);
                 gameObject.SetActive(false);
             }
         }
