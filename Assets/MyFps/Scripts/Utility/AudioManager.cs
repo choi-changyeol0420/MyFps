@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Myfps
 {
@@ -10,15 +10,20 @@ namespace Myfps
         public Sound[] sounds;
 
         private string bgmSound = "";   //현재 플레이 되는 이름
-        public string BgmSound   
+        public string BgmSound
         {
             get {return bgmSound;}
         }
+
+        public AudioMixer audioMixer;
         #endregion
         protected override void Awake()
         {
             //Singletone 구현부
             base.Awake();
+
+            //AudioMixer 그룹
+            AudioMixerGroup[] audioMixerGroups = audioMixer.FindMatchingGroups("Master");
 
             //AudioManager 초기화
             foreach (var sound in sounds)
@@ -29,6 +34,16 @@ namespace Myfps
                 sound.Source.volume = sound.volume;
                 sound.Source.pitch = sound.pitch;
                 sound.Source.loop = sound.loop;
+
+                if(sound.loop )
+                {
+                    sound.Source.outputAudioMixerGroup = audioMixerGroups[1];   //BGM
+                }
+                else
+                {
+                    sound.Source.outputAudioMixerGroup = audioMixerGroups[2];   //SFX
+                }
+                
             }
         }
         public void Play(string name)
