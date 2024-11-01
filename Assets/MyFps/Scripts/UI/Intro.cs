@@ -60,9 +60,9 @@ namespace Myfps
             AudioManager.Instance.PlayBgm("Opening");
             yield return new WaitForSeconds(1f);
             cameraanimator.SetTrigger("ArroundTrigger");
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3.5f);
 
-            cart.m_Speed = 0.05f;
+            cart.m_Speed = 0.065f;
             
         }
         IEnumerator StayIntro()
@@ -75,26 +75,22 @@ namespace Myfps
             cameraanimator.SetTrigger("ArroundTrigger");
 
             int nowIndex = wayPointIndex - 1;
-            switch (nowIndex)
+            if (nowIndex == 0)
             {
-                case 1:
-                    introUI.SetActive(false);
-                    break;
-                case 2:
-                    introUI.SetActive(true);
-                    break;
-                case 3:
-                    theShedlight.SetActive(true);
-                    break;
+                introUI.SetActive(false);
             }
-            yield return new WaitForSeconds(3f);
+            else if (nowIndex == 1)
+            {
+                introUI.SetActive(true);
+            }
+            yield return new WaitForSeconds(4f);
             if (nowIndex == 4)
             {
                 theShedlight.SetActive(true);
                 yield return new WaitForSeconds(1f);
             }
             //출발
-            cart.m_Speed = 0.05f;
+            cart.m_Speed = 0.065f;
         }
 
         //
