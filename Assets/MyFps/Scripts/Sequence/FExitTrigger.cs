@@ -16,6 +16,8 @@ namespace Myfps
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             fader.FadeTo(loadtoscene);
+            PlayerState.Instance.SceneNumber = 1;
+            SaveLoad.SaveData();
         }
     }
 }

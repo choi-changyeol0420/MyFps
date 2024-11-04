@@ -7868,6 +7868,7 @@ MonoBehaviour:
   fader: {fileID: 862141922}
   TextBox: {fileID: 1853713046}
   thePlayer: {fileID: 1776305}
+  pistol: {fileID: 1614549158}
 --- !u!114 &643552791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38717,7 +38718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1614549159
 Transform:
   m_ObjectHideFlags: 0
@@ -38858,7 +38859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 1025416982}
   fader: {fileID: 862141922}
-  lodetoname: GotoMenu
+  lodetoname: MainMenu
   Sounds: {fileID: 0}
 --- !u!4 &1620848296
 Transform:

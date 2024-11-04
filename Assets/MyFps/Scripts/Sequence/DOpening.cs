@@ -10,7 +10,8 @@ namespace Myfps
         public SceneFader fader;
         public TextMeshProUGUI TextBox;
         public GameObject thePlayer;
-
+        public GameObject pistol;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -24,9 +25,11 @@ namespace Myfps
         
         IEnumerator SequencePlay()
         {
+            pistol.SetActive(true);
             //플레이어 비활성화
             thePlayer.GetComponent<FirstPersonController>().MoveSpeed = 0f;
             thePlayer.GetComponent<FirstPersonController>().RotationSpeed = 0f;
+
             //배경음 시작
             AudioManager.Instance.PlayBgm("PlayBGM");
             //시퀀스 텍스트 초기화

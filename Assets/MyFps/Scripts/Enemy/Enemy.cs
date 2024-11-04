@@ -179,10 +179,18 @@ namespace Myfps
         }
         void Attack()
         {
+            float distance = Vector3.Distance(theplayer.transform.position, transform.position);
             IDamageable damageable = theplayer.GetComponent<IDamageable>();
-            if (damageable != null)
+            if (distance > AttackRange)
             {
-                damageable.TakeDamage(AttackDamage);
+                return;
+            }
+            else if (distance <= AttackRange)
+            {
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(AttackDamage);
+                }
             }
         }
         private void GoNextPoint()

@@ -60,5 +60,10 @@ namespace Myfps
 
             return playData;
         }
+        public static void DeleteFile()
+        {
+            string path = Application.persistentDataPath + "/playData.arr";
+            File.Delete( path );
+        }
     }
 }

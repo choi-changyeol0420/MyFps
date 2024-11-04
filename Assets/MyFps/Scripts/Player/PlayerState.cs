@@ -64,7 +64,7 @@ namespace Myfps
                 AmmoCount = playData.ammoCount;
                 HasGun = playData.hasGun;
             }
-            else //저장된 데이터가 없을 때
+            else if(playData == null) //저장된 데이터가 없을 때
             {
                 SceneNumber = 0;
                 AmmoCount = 0;

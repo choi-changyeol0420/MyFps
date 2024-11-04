@@ -11,6 +11,7 @@ namespace Myfps
         #region Variables
         public SceneFader sceneFader;
         public GameObject thePlayer;
+        public GameObject pistol;
 
         //UI
         public TextMeshProUGUI sceneText;
@@ -33,6 +34,8 @@ namespace Myfps
         IEnumerator OpeningFader()
         {
             isSequence = true;
+            //다시 시작해도 총이 비활성화
+            pistol.SetActive(false);
             //플레이 캐릭터 비 활성화
             thePlayer.GetComponent<FirstPersonController>().enabled = false;
             //페이드인 연출 (5초 대기후 페인드인 효과)

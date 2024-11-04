@@ -53747,6 +53747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneFader: {fileID: 1302742808}
   thePlayer: {fileID: 8467133790439244347}
+  pistol: {fileID: 1172093613}
   sceneText: {fileID: 862276050}
   sequence01: ...Where am I?
   sequence02: I need get out of here
@@ -61033,7 +61034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccb82212f16f1a4c8bd2db69ba386f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cvCamera: {fileID: 1312369983544210048}
+  cvCamera: {fileID: 0}
   channelPerlin: {fileID: 0}
   isShake: 0
   frequency: 1

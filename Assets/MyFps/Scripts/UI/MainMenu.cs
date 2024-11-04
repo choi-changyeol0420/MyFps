@@ -23,7 +23,6 @@ namespace Myfps
 
         public Slider bgmSlider;
         public Slider sfxSlider;
-
         #endregion
         private void Start()
         {
@@ -31,9 +30,14 @@ namespace Myfps
             InitGameData();
 
             //Debug.Log($"저장된 sceneNumber: {PlayerState.Instance.SceneNumber}");
-            if(PlayerState.Instance.SceneNumber > 0)
+            if (PlayerState.Instance.SceneNumber > 2)
             {
                 loadgamebutton.SetActive(true);
+            }
+            else
+            {
+                loadgamebutton.SetActive(false);
+
             }
             //씬 페이더 효과
             fader.FromFade();
@@ -64,7 +68,6 @@ namespace Myfps
         {
             audioManager.Play(soundButton);
             Debug.Log("Goto LoadGame");
-
             fader.FadeTo(PlayerState.Instance.SceneNumber);
         }
         public void Options()
@@ -80,8 +83,8 @@ namespace Myfps
         }
         public void QuitGame()
         {
-            //Cheating
-            PlayerPrefs.DeleteAll();
+            //cheating
+            //SaveLoad.DeleteFile();
 
             audioManager.Play(soundButton);
             Debug.Log("Quit Game");

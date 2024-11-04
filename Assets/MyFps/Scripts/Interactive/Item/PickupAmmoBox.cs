@@ -5,7 +5,7 @@ namespace Myfps
     public class PickupAmmoBox : Interactive
     {
         [SerializeField]private int giveAmmo = 7;
-        private bool isChting = true;
+        //private bool isChting = true;
 
         protected override void DoAction()
         {
@@ -16,13 +16,13 @@ namespace Myfps
                 Destroy(gameObject);
                 HideActionUI();
             }
-            else if (Input.GetKeyDown(KeyCode.Z) && isChting)
+            /*else if (Input.GetKeyDown(KeyCode.Z) && isChting)
             {
                 Debug.Log("isChting을 사용했습니다");
                 PlayerState.Instance.AddAmmo(99);
                 Destroy(gameObject);
                 HideActionUI();
-            }
+            }*/
         }
     }
 }
