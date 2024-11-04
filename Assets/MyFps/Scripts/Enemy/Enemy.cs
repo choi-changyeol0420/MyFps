@@ -88,6 +88,7 @@ namespace Myfps
             if (distance <= AttackRange)
             {
                 SetState(RobotState.E_Attack);
+                agent.SetDestination(this.transform.position);
             }
             else if (Range > 0)
             {

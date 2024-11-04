@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Myfps
@@ -15,18 +16,25 @@ namespace Myfps
         public GameObject mainmenuUI;
         public GameObject optionsUI;
         public GameObject CreditsUI;
+        public GameObject loadgamebutton;
 
         //Audio
         public AudioMixer mixer;
 
         public Slider bgmSlider;
         public Slider sfxSlider;
+
         #endregion
         private void Start()
         {
-            //게임 저장데이터, 저장된 옵션값 불러오기
-            LoadOption();
+            //게임 데이터 초기화
+            InitGameData();
 
+            //Debug.Log($"저장된 sceneNumber: {PlayerState.Instance.SceneNumber}");
+            if(PlayerState.Instance.SceneNumber > 0)
+            {
+                loadgamebutton.SetActive(true);
+            }
             //씬 페이더 효과
             fader.FromFade();
 
@@ -36,8 +44,19 @@ namespace Myfps
             //배경음
             audioManager.PlayBgm("MenuBGM");
         }
+        private void InitGameData()
+        {
+            //게임설정값, 저장된 옵션값 불러오기
+            LoadOption();
+
+            //게임 플레이 데이터 로드
+            PlayData playData = SaveLoad.LoadData();
+            PlayerState.Instance.PlayerStatInit(playData);
+        }
         public void NewGame()
         {
+            //게임 데이터 초기화
+            PlayerState.Instance.PlayerStatInit(null);
             audioManager.Play(soundButton);
             fader.FadeTo(loadtoScene);
         }
@@ -45,6 +64,8 @@ namespace Myfps
         {
             audioManager.Play(soundButton);
             Debug.Log("Goto LoadGame");
+
+            fader.FadeTo(PlayerState.Instance.SceneNumber);
         }
         public void Options()
         {

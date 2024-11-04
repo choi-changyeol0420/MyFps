@@ -10,7 +10,8 @@ namespace Myfps
         private GameObject theplayer;
         public GameObject pauseUI;
         public SceneFader fader;
-        [SerializeField] private string lodetoname = "GotoMenu";
+        [SerializeField] private string lodetoname = "MainMenu";
+        public GameObject Sounds;
         private void Start()
         {
             theplayer = GameObject.Find("Player");
@@ -52,7 +53,14 @@ namespace Myfps
         {
             Time.timeScale = 1f;
             //씬 종료 처리
-            AudioManager.Instance.StopBgm();
+            if(AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StopBgm();
+            }
+            else
+            {
+                Sounds.SetActive(false);
+            }
             fader.FadeTo(lodetoname);
         }
     }

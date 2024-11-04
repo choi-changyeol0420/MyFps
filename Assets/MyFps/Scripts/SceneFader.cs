@@ -24,6 +24,10 @@ namespace Myfps
         {
             StartCoroutine(FadeOut(scenename));
         }
+        public void FadeTo(int sceneNumber)
+        {
+            StartCoroutine(FadeOut(sceneNumber));
+        }
         public void FromFade(float delayTime = 0f)
         {
             StartCoroutine (FadeIn(delayTime));
@@ -59,6 +63,20 @@ namespace Myfps
             //다음씬 로드
             SceneManager.LoadScene(scenename);
         }
+        IEnumerator FadeOut(int sceneNumber)
+        {
+            float t = 0f;
+            while (t < 1)
+            {
+                t += Time.deltaTime;
+                float a = curve.Evaluate(t);
+                sceneFader.color = new Color(0, 0, 0, a);
 
+                yield return 0f;
+            }
+
+            //다음씬 로드
+            SceneManager.LoadScene(sceneNumber);
+        }
     }
 }

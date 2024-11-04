@@ -17,11 +17,15 @@ namespace Myfps
             keyText.text = "[E]";
             if (Input.GetKeyDown(KeyCode.E))
             {
-                realPistol.SetActive(true);
                 Arrow.SetActive(false);
                 enemyTrigger.SetActive(true);
                 ammobox.SetActive(true);
+                
+                //무기 획득
+                PlayerState.Instance.SetHasGun(true);
                 ammoUI.SetActive(true);
+                realPistol.SetActive(true);
+
                 Destroy(gameObject);
                 HideActionUI();
             }
