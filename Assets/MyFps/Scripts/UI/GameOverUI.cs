@@ -19,14 +19,7 @@ namespace Myfps
         }
         public void Retry()
         {
-            if(PlayerState.Instance.SceneNumber == 3)
-            {
-                fader.FadeTo(3);
-            }
-            else if(PlayerState.Instance.SceneNumber == 4)
-            {
-                fader.FadeTo(4);
-            }
+            fader.FadeTo(PlayerState.Instance.NowSceneNumber);
         }
         public void Menu()
         {

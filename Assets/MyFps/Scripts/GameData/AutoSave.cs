@@ -16,11 +16,11 @@ namespace Myfps
             //현재 씬 저장
             int sceneNumber = PlayerState.Instance.SceneNumber;
 
-            int playScene = SceneManager.GetActiveScene().buildIndex;
+            PlayerState.Instance.NowSceneNumber = SceneManager.GetActiveScene().buildIndex;
             //새로 플레이하는 씬이냐?
-            if(playScene > sceneNumber)
+            if(PlayerState.Instance.NowSceneNumber > sceneNumber)
             {
-                PlayerState.Instance.SceneNumber = playScene;
+                PlayerState.Instance.SceneNumber = PlayerState.Instance.NowSceneNumber;
                 SaveLoad.SaveData();
             }
         }
